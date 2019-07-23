@@ -9,23 +9,20 @@ public class Player : MonoBehaviour
     [SerializeField] float xThrow = 10f;
     [SerializeField] float yThrow = 10f;
     [SerializeField] float pullRot = 10f;
-    
+    [SerializeField] float speedMultiplier = 4f;
 
 
     // Start is called before the first frame update
     float horizon = 0f;
     float vertics = 0f;
-
-    void Start()
-    {
-        
-    }
+   
 
     // Update is called once per frame
     void Update()
     {
         Movement();
         Fire();
+        Boost();
     }
 
     void Movement() {
@@ -34,8 +31,6 @@ public class Player : MonoBehaviour
 
         float verticalThrow = CrossPlatformInputManager.GetAxis("Vertical");
         vertics += verticalThrow * Time.deltaTime * yThrow;
-
-        transform.position += transform.forward;
 
         float pull = -horizontalThrow * pullRot;
 
@@ -51,7 +46,16 @@ public class Player : MonoBehaviour
             pS.Play();
     }
 
+    void Boost() {
+        if (Input.GetKey(KeyCode.LeftShift))
+        {
+            transform.position += transform.forward * speedMultiplier;
 
+        }
+        else {
+            transform.position += transform.forward;
+        }
+    }
     
 
 }
