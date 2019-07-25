@@ -13,7 +13,7 @@ public class Enemy : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BoxCollider enemyCollider = gameObject.AddComponent<BoxCollider>();
+        MeshCollider enemyCollider = gameObject.AddComponent<MeshCollider>();
         enemyCollider.isTrigger = false;
     }
 
